@@ -8,17 +8,17 @@ def widthSearch(init, inputs):
             vertices.update({first: {second}})
     
     _vertices = set(vertices.keys())
-    res_vertices = set()
+    res = set()
     width = -1
-    iter_vertices = {init}
+    current = {init}
     
-    while iter_vertices:
-        old = iter_vertices.copy()
-        iter_vertices = set()
+    while current:
+        old = current.copy()
+        current = set()
         for vertex in old:
-            iter_vertices |= vertices.get(vertex, set())
-        iter_vertices -= res_vertices
-        res_vertices |= iter_vertices
+            current |= vertices.get(vertex, set())
+        current -= res
+        res |= current
         width += 1
     return width
 
